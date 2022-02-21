@@ -115,7 +115,15 @@ const comprarProducto = (e) => {
 /* -------------------------------- EJECUCION ------------------------------- */
 
 // Llamado a la función con la promesa
-pedirProductos().then((res) => {
-	productos = res
-	mostrarProductos(productos)
-})
+pedirProductos()
+	.then((res) => {
+		productos = res
+		mostrarProductos(productos)
+	})
+	.catch(() => {
+		contenedorProductos.innerHTML = `
+			<div class="col-md-12">
+				<h1 class="text-center">Error al cargar los productos</h1>
+			</div>
+		`
+	})
